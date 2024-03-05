@@ -1,6 +1,6 @@
 # remult monorepo
 
-to run this project type you must install bun and node
+to run this project type you must install bun
 
 ```sh
 bun install
