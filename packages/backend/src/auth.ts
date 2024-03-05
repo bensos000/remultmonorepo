@@ -8,7 +8,7 @@ const validUsers: UserInfo[] = [
 
 const auth = new Hono();
 
-auth.post("/api/signIn", async (c) => {
+auth.post("/api/signIn", async (c: any) => {
   const { username } = await c.req.json();
   const session = c.get("session");
   const user = validUsers.find((user) => user.name === username);
@@ -20,13 +20,13 @@ auth.post("/api/signIn", async (c) => {
   }
 });
 
-auth.post("/api/signOut", async (c) => {
+auth.post("/api/signOut", async (c: any) => {
   const session = c.get("session");
   session.set("user", null);
   return c.json("signed out", 404);
 });
 
-auth.get("/api/currentUser", async (c) => {
+auth.get("/api/currentUser", async (c: any) => {
   const session = c.get("session");
   return c.json(session.get("user"));
 });

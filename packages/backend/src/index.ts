@@ -15,6 +15,7 @@ app.use(
 
 const store = new CookieStore()
 
+// @ts-ignore:next-line
 app.use('*', sessionMiddleware({
   store,
   encryptionKey: process.env.SESSION_SECRET, // Required for CookieStore, recommended for others
