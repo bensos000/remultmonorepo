@@ -3,7 +3,7 @@ import { TasksController } from "shared";
 
 export const api = remultHono({
   controllers: [TasksController],
-  getUser: async (c) => {
+  getUser: async (c: any) => {
     const session = c.get("session");
     return session.get("user");
   },
