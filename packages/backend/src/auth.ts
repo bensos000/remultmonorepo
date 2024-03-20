@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import type { UserInfo } from "remult";
 
 const validUsers: UserInfo[] = [
-  { id: "1", name: "Jane" },
+  { id: "1", name: "Jane", roles: ["admin"] },
   { id: "2", name: "Steve" },
 ];
 

@@ -15,7 +15,6 @@ app.use(
 
 const store = new CookieStore()
 
-// @ts-ignore:next-line
 app.use('*', sessionMiddleware({
   store,
   encryptionKey: process.env.SESSION_SECRET, // Required for CookieStore, recommended for others
@@ -25,7 +24,7 @@ app.use('*', sessionMiddleware({
     path: '/', // Required for this library to work properly
     httpOnly: true, // Recommended to avoid XSS attacks
   },
-}))
+}) as any)
 
 // controllers route
 app.route('', api);

@@ -21,7 +21,7 @@ export default function App() {
     await TasksController.setAllCompleted(completed);
   };
 
-  useEffect(() => {    
+  useEffect(() => {
     return taskRepo
       .liveQuery({
         limit: 20,
@@ -41,14 +41,16 @@ export default function App() {
             Set All Uncompleted
           </button>
         </div>
-        <form onSubmit={addTask}>
-          <input
-            value={newTaskTitle}
-            placeholder="What needs to be done?"
-            onChange={(e) => setNewTaskTitle(e.target.value)}
-          />
-          <button>Add</button>
-        </form>
+        {taskRepo.metadata.apiInsertAllowed() && (
+          <form onSubmit={addTask}>
+            <input
+              value={newTaskTitle}
+              placeholder="What needs to be done?"
+              onChange={(e) => setNewTaskTitle(e.target.value)}
+            />
+            <button>Add</button>
+          </form>
+        )}
         {tasks.map((task) => {
           const setTask = (value: Task) =>
             setTasks((tasks) => tasks.map((t) => (t === task ? value : t)));
@@ -86,7 +88,9 @@ export default function App() {
                 onChange={(e) => setTitle(e.target.value)}
               />
               <button onClick={saveTask}>Save</button>
-              <button onClick={deleteTask}>Delete</button>
+              {taskRepo.metadata.apiDeleteAllowed(task) && (
+                <button onClick={deleteTask}>Delete</button>
+              )}
             </div>
           );
         })}
