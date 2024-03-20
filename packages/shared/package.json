@@ -7,6 +7,6 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "backend": "workspace:*"
+    "remult": "^0.25.6"
   }
 }
